@@ -84,15 +84,15 @@ Avr compiler,Simule ide
 
 # DESIGN:
 
-      * Here we demonstrate fingerprint based security system to authenticate users from entering particular premises.The system is useful for secure sites to provide access only to authorized users automatically. This ensures safety and security at secure sites/premises like military, navy, government as well as corporate premises.
+* Here we demonstrate fingerprint based security system to authenticate users from entering particular premises.The system is useful for secure sites to provide access only to authorized users automatically. This ensures safety and security at secure sites/premises like military, navy, government as well as corporate premises.
       
-      * For this purpose we here use a Atmega 32 microcontroller circuit. The circuit consists of atmega microcontroller that is interfaced to fingerprint sensor, LCD display and motors to operate a door.
+* For this purpose we here use a Atmega 32 microcontroller circuit. The circuit consists of atmega microcontroller that is interfaced to fingerprint sensor, LCD display and motors to operate a door.
       
-      * Users are allowed to register into the system first. After registration/enrollment the system allows to start monitoring.Now if a fingerprint is detected, the system scans the fingerprint against stored ones.
+* Users are allowed to register into the system first. After registration/enrollment the system allows to start monitoring.Now if a fingerprint is detected, the system scans the fingerprint against stored ones.
       
-      * If a match is found, the system operates the motors to open the door for those users, else the system does not open the door.
+* If a match is found, the system operates the motors to open the door for those users, else the system does not open the door.
       
-      * Thus we ensure a secure fingerprint authorized security system.
+* Thus we ensure a secure fingerprint authorized security system.
 
 # LOW LEVEL DIAGRAM:
 
@@ -117,6 +117,30 @@ Avr compiler,Simule ide
 # BLOCK DIAGRAM:
 
 ![Block diagram](https://user-images.githubusercontent.com/94212251/144254858-e15b382b-5630-476b-9884-21302f685b2b.png)
+
+
+## TEST PLAN AND OUTPUT #
+
+
+# Table No 1: High level test plan
+
+|Test ID |	Description	Exp I/P	Exp O/p |
+|------- |  --------------------------- |
+| H_01 | Check if program is running or not.|
+| H_02 | Check if circuit connection is correct or not |
+| H_03 | check if running or not |
+# Table No 2: Low level test plan
+|Test ID |	Description	Exp I/P	Exp O/p |
+|------- | ---------------------------- |
+|L_01 |	Requirements showld be appropriate |
+|L_02 |	Required software showld be uploaded.|
+|L_03	| Should set a correct directory path |
+
+
+
+# OUTPUT:
+![Circuit-Diagram-AVR-ATMega16-R305-Module-Based-Fingerprint-Scanner](https://user-images.githubusercontent.com/94212251/144262031-5650cd82-7df5-4cba-bf54-2b79ddf9a9aa.gif)
+
 
 
 
