@@ -41,37 +41,41 @@ Fingerprint scanners work by capturing the pattern of ridges and valleys on a fi
 
 # SYSTEM REQUIREMENTS:
 
-# Hardware Specifications:
-Fingerprint Sensor
+# HARDWARE COMPONENTS:
 
-Mini Door 
+ * Fingerprint Sensor
 
-LCD Display
+ * Mini Door 
 
-Crystal Oscillator 
+ * LCD Display
 
-Resistors
+ * Crystal Oscillator 
 
-Capacitors
+ * Resistors
 
-Transistors 
+ * Capacitors
 
-Cables and Connectors 
+ * Transistors 
 
-Diodes
+ * Cables and Connectors 
 
-PCB and Breadboards 
+ * Diodes
+ 
+ * PCB and Breadboards 
 
-LED Transformer/Adapter
+ * LED Transformer/Adapter
 
-Push Buttons 
+ * Push Buttons 
 
-Switch IC 
+ * Switch IC 
 
-IC Socket
+ * IC Socket
 
-# Software Specifications:
-MC Programming Language: C
+# HIGH LEVEL REQUIREMENTS:
+
+Avr compiler,Simule ide
+
+
 
 
 
