@@ -127,6 +127,84 @@ Fingerprint scanners work by capturing the pattern of ridges and valleys on a fi
 |L_02 |	Required software showld be uploaded.|
 |L_03	| Should set a correct directory path |
 
+# SOURCE CODE
+
+We need to download some libraries. First of all we need the Adafruit Fingerprint library, the Adafruit GFX library and the Sumotoy's library for the display.
+
+https://github.com/adafruit/Adafruit-Fingerprint-Sensor-Library
+
+https://github.com/adafruit/Adafruit-GFX-Library
+
+https://github.com/sumotoy/TFT_ILI9163C
+
+#include &lt;SPI.h&gt;
+
+#include &lt;Adafruit_GFX.h&gt;
+
+#include &lt;TFT_ILI9163C.h&gt;
+
+#include &lt;Adafruit_Fingerprint.h&gt;
+
+#include &lt;SoftwareSerial.h&gt;
+
+#include &lt;avr/pgmspace.h&gt;
+
+void setup( void )
+
+{
+
+startFingerprintSensor();
+
+display.begin();
+
+displayLockScreen();}
+
+void loop(){
+
+fingerprintID = getFingerprintID();
+
+delay(50);
+
+if (fingerprintID ==1)
+
+{
+
+display.drawBitmap(30,35,icon,60,60,GREEN);
+
+delay(2000);
+
+displayUnlockedScreen();
+
+displayIoanna();
+
+delay(5000);
+
+display.fillScreen(BLACK);
+
+displayLockScreen();
+
+}
+
+if (fingerprintID ==2)
+
+{
+
+display.drawBitmap(30,35,icon,60,60,GREEN);
+
+delay(2000);
+
+displayUnlockedScreen();
+
+displayNick();
+
+delay(5000);
+
+display.fillScreen(BLACK);
+
+displayLockScreen();
+
+}}
+
 
 
 # OUTPUT:
