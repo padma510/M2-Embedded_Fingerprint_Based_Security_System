@@ -41,39 +41,30 @@ Fingerprint scanners work by capturing the pattern of ridges and valleys on a fi
 
 # SYSTEM REQUIREMENTS:
 
-# HARDWARE COMPONENTS:
 
- * Fingerprint Sensor
+## **HIGH LEVEL REQUIREMENTS**
 
- * Mini Door 
+| **High Level Requirements** | **Description** |
+| --- | --- |
+| HLR1 | Finger Print Sensor |
+| --- | --- |
+| HLR2 | Switches |
+| HLR3 | Motor |
+| HLR4 | Microcontroller |
+| HLR5 | Software used |
+| HLR6 | Display |
 
- * LCD Display
+# **LOWLEVEL REQUIREMENTS**
 
- * Crystal Oscillator 
+| **Low Level Requirements** | **Description** |
+| --- | --- |
+| HLR1\_LLR1 | Finger Print module |
+| --- | --- |
+| HLR2\_LLR1 | Push Button |
+| HLR4\_LLR1 | ATMEGA 328 |
+| HLR5\_LLR1 | Code Blocks with AVR GCC compiler |
+| HLR6\_LLR1 | SimulIDE LCD and LED |
 
- * Resistors
-
- * Capacitors
-
- * Transistors 
-
- * Cables and Connectors 
-
- * Diodes
- 
- * PCB and Breadboards 
-
- * LED Transformer/Adapter
-
- * Push Buttons 
-
- * Switch IC 
-
- * IC Socket
-
-# HIGH LEVEL REQUIREMENTS:
-
-Avr compiler,Simule ide
 
 
 
