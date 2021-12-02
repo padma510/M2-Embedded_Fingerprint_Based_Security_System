@@ -1,2 +1,4 @@
-![Circuit-Diagram-AVR-ATMega16-R305-Module-Based-Fingerprint-Scanner](https://user-images.githubusercontent.com/94212251/144260886-16fcef98-abfc-4aef-b48b-6b845dd3208f.gif)
+# OUTPUT:
+
+![output](https://user-images.githubusercontent.com/94212251/144371011-b14e7d5c-bffe-4b77-b56d-afe6ce3593ed.png)
 
