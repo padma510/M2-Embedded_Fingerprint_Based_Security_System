@@ -124,7 +124,6 @@ void displayUnlockedScreen()
 {
    display.fillScreen(BLACK);
    display.drawRect(0,0,128,128,WHITE);
-   
    display.setCursor(18,10);
    display.setTextColor(GREEN); 
    display.setTextSize(2);
@@ -194,5 +193,4 @@ int getFingerprintID() {
   Serial.print(" with confidence of "); Serial.println(finger.confidence);
   return finger.fingerID; 
 }
-
 
