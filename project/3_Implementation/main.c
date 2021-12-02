@@ -1,593 +1,167 @@
-#include<avr/io.h>
-
-#include<util/delay.h>
-
-#include<uart.h>
-
-#include<lcd.h>
-
- 
-
-void read_finger_1()          //for char_buffer1
-
-{
-
-      int i=0;
-
-      char k=1,ch=1;
-
- 
-
-      sendchar_uart(239);
-
-      sendchar_uart(1);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(1);
-
-      sendchar_uart(0);
-
-      sendchar_uart(3);
-
-      sendchar_uart(1);
-
-      sendchar_uart(0);
-
-      sendchar_uart(5);
-
- 
-
-      for(i=0;i<10;i++)
-
-      {
-
-            k=getchar_uart();
-
-            if(i==9)
-
-            {
-
-                  ch=k;
-
-                  k=getchar_uart();
-
-                  k=getchar_uart();
-
-                  if(ch==0x00)
-
-                  {
-
-                        PORTC|=(1<<0);
-
-                        k=1;
-
-                        sendchar_uart(239);
-
-                        sendchar_uart(1);
-
-                        sendchar_uart(255);
-
-                        sendchar_uart(255);
-
-                        sendchar_uart(255);
-
-                        sendchar_uart(255);
-
-                        sendchar_uart(1);
-
-                        sendchar_uart(0);
-
-                        sendchar_uart(4);
-
-                        sendchar_uart(2);
-
-                        sendchar_uart(1);
-
-                        sendchar_uart(0);
-
-                        sendchar_uart(8);
-
-                        i=0;
-
-                        for(i=0;i<10;i++)
-
-                        {
-
-                              k=getchar_uart();
-
-                              if(i==9)
-
-                              {
-
-                                    ch=k;
-
-                                    k=getchar_uart();
-
-                                    k=getchar_uart();
-
-                                    if(ch==0x00)
-
-                                    {
-
-                                          PORTC|=(1<<1);
-
-                                    }
-
-                              }
-
-                        }
-
-                  }
-
-            }
-
-      }
-
+#include <Adafruit_Fingerprint.h>
+#include <SoftwareSerial.h>
+
+int getFingerprintIDez();
+SoftwareSerial mySerial(3,4);// tx, rx
+
+
+Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
+ void buzzeropen()
+ {
+  digitalWrite(11,HIGH); 
+  delay(500);
+ }
+
+ void buzzerClose()
+{ 
+  digitalWrite(11,LOW); 
 }
 
- 
-
-void read_finger_2()          //for char_buffer2
-
+ void doorOpen()
 {
-
-      int i=0;
-
-      char k=1,ch=1;
-
+  if(finger.fingerID==1) 
+  {
+  digitalWrite(8,HIGH);
+  digitalWrite(9,HIGH);
+  digitalWrite(10,LOW);
+  delay(3000);
+  
  
-
-      sendchar_uart(239);
-
-      sendchar_uart(1);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(1);
-
-      sendchar_uart(0);
-
-      sendchar_uart(3);
-
-      sendchar_uart(1);
-
-      sendchar_uart(0);
-
-      sendchar_uart(5);
-
- 
-
-      for(i=0;i<10;i++)
-
-      {
-
-            k=getchar_uart();
-
-            if(i==9)
-
-            {
-
-                  ch=k;
-
-                  k=getchar_uart();
-
-                  k=getchar_uart();
-
-                  if(ch==0x00)
-
-                  {
-
-                        PORTC|=(1<<2);
-
-                        k=1;
-
-                        sendchar_uart(239);
-
-                        sendchar_uart(1);
-
-                        sendchar_uart(255);
-
-                        sendchar_uart(255);
-
-                        sendchar_uart(255);
-
-                        sendchar_uart(255);
-
-                        sendchar_uart(1);
-
-                        sendchar_uart(0);
-
-                        sendchar_uart(4);
-
-                        sendchar_uart(2);
-
-                        sendchar_uart(2);
-
-                        sendchar_uart(0);
-
-                        sendchar_uart(9);
-
-                        i=0;
-
-                        for(i=0;i<10;i++)
-
-                        {
-
-                              k=getchar_uart();
-
-                              if(i==9)
-
-                              {
-
-                                    ch=k;
-
-                                    k=getchar_uart();
-
-                                    k=getchar_uart();
-
-                                    if(ch==0x00)
-
-                                    {
-
-                                          PORTC|=(1<<3);
-
-                                    }
-
-                              }
-
-                        }
-
-                  }
-
-            }
-
-      }
-
+  }    
 }
 
- 
-
-void make_template()
-
+void doorClose()
 {
-
-      int i=0;
-
-      char k=1,ch=1;
-
- 
-
-      k=1;
-
-      sendchar_uart(239);
-
-      sendchar_uart(1);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(1);
-
-      sendchar_uart(0);
-
-      sendchar_uart(3);
-
-      sendchar_uart(5);
-
-      sendchar_uart(0);
-
-      sendchar_uart(9);
-
- 
-
-      for(i=0;i<10;i++)
-
-      {
-
-            k=getchar_uart();
-
-            if(i==9)
-
-            {
-
-                  ch=k;
-
-                  k=getchar_uart();
-
-                  k=getchar_uart();
-
-                  if(ch==0x00)
-
-                        PORTC|=(1<<4);
-
-            }
-
-      }
-
- 
-
+  digitalWrite(8,LOW); 
+  digitalWrite(9,LOW);
+  digitalWrite(10,HIGH);  
+  digitalWrite(11,LOW);
 }
 
- 
 
-void check_finger()
-
+void setup()  
 {
-
-int i=0;
-
-char k=1,ch=1;
-
+  pinMode(9,OUTPUT); 
+  pinMode(10,OUTPUT); 
+  pinMode(11,OUTPUT);  
+  digitalWrite(9,LOW);
+  digitalWrite(10,HIGH);
  
+  Serial.begin(9600);
+  Serial.println("fingertest");
+  finger.begin(57600);
+  pinMode(8,OUTPUT); //Pin connected to relay
+  
+  if (finger.verifyPassword()) 
+  {
+    Serial.println("Found fingerprint sensor!"); 
+  } else 
+  {
+    Serial.println("Did not find fingerprint sensor :("); 
+    while (1);
+  }
+  Serial.println("No valid finger found,waiting for valid finger..."); 
+  }
 
-sendchar_uart(239);
+  
+  
+  void loop()               
+{
+      
+  if(getFingerprintIDez()>=0)
+  {
+        doorOpen();
+        buzzeropen();
+        buzzerClose();
+        doorClose();
+  }
+  
+    
+}
+uint8_t getFingerprintID()
+{
+  uint8_t p = finger.getImage();
+  switch (p)
+  {
+    case FINGERPRINT_OK:
+      Serial.println("Image taken");
+      break;
+    case FINGERPRINT_NOFINGER:
+      Serial.println("No finger detected");
+      return p;
+    case FINGERPRINT_PACKETRECIEVEERR:
+      Serial.println("Communication error");
+      return p;
+    case FINGERPRINT_IMAGEFAIL:
+      Serial.println("Imaging error");
+      return p;
+        default:
+      Serial.println("Unknown error");
+      return p;
+  }
 
-sendchar_uart(1);
+  // OK success!
 
-sendchar_uart(255);
-
-sendchar_uart(255);
-
-sendchar_uart(255);
-
-sendchar_uart(255);
-
-sendchar_uart(1);
-
-sendchar_uart(0);
-
-sendchar_uart(8);
-
-sendchar_uart(4);
-
-sendchar_uart(1);
-
-sendchar_uart(0);
-
-sendchar_uart(0);
-
-sendchar_uart(0);
-
-sendchar_uart(10);
-
-sendchar_uart(0);
-
-sendchar_uart(24);
-
- 
-
-for(i=0;i<10;i++)
-
-      {
-
-            k=getchar_uart();
-
-            if(i==9)
-
-            {
-
-                  ch=k;
-
-                  k=getchar_uart();
-
-                  k=getchar_uart();
-
-                  k=getchar_uart();
-
-                  k=getchar_uart();
-
-                  k=getchar_uart();
-
-                  k=getchar_uart();
-
-                  LCDclr();
-
-                  if(ch==0x00)
-
-                        {
-
-                              PORTC|=(1<<5);
-
-                              LCDdisplay("FINGER FOUND");
-
-                        }
-
-                  else
-
-                        LCDdisplay("FINGER NOT FOUND");
-
-            }
-
-      }
-
+  p = finger.image2Tz();
+  switch (p) 
+  {
+    case FINGERPRINT_OK:
+      Serial.println("Image converted");
+      break;
+    case FINGERPRINT_IMAGEMESS:
+      Serial.println("Image too messy");
+      return p;
+    case FINGERPRINT_PACKETRECIEVEERR:
+      Serial.println("Communication error");
+      return p;
+    case FINGERPRINT_FEATUREFAIL:
+      Serial.println("Could not find fingerprint features");
+      return p;
+    case FINGERPRINT_INVALIDIMAGE:
+      Serial.println("Could not find fingerprint features");
+      return p;
+    default:
+      Serial.println("Unknown error");
+      return p;
+  }
+  
+  // OK converted!
+  p = finger.fingerFastSearch();
+  if (p == FINGERPRINT_OK)
+  {
+    Serial.println("Found a print match!");
+  } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
+    Serial.println("Communication error");
+    return p;
+  } else if (p == FINGERPRINT_NOTFOUND) {
+    Serial.println("Did not find a match");
+    return p;
+  } else {
+    Serial.println("Unknown error");
+    return p;
+  }   
+  
+  // found a match!
+  Serial.print("Found ID #"); Serial.print(finger.fingerID);
+  Serial.print(" with confidence of "); Serial.println(finger.confidence); 
 }
 
- 
+// returns -1 if failed, otherwise returns ID #
+int getFingerprintIDez() {
+  uint8_t p = finger.getImage();
+  if (p != FINGERPRINT_OK)  return -1;
 
-void store(int ID)
+  p = finger.image2Tz();
+  if (p != FINGERPRINT_OK)  return -1;
 
-{
-
-      int i=0,sum=14+ID;
-
-      char k=1,ch=1;
-
-   sendchar_uart(239);
-
-      sendchar_uart(1);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(1);
-
-      sendchar_uart(0);
-
-      sendchar_uart(6);
-
-      sendchar_uart(6);
-
-      sendchar_uart(1);
-
-      sendchar_uart(0);
-
-      sendchar_uart(ID);
-
-      sendchar_uart(0);//C
-
-      sendchar_uart(sum);//C
-
- 
-
-      for(i=0;i<10;i++)
-
-            {
-
-                  k=getchar_uart();
-
-                  if(i==9)
-
-                  {
-
-                        ch=k;
-
-                        k=getchar_uart();
-
-                        k=getchar_uart();
-
-                        if(ch==0x00)
-
-                              PORTC|=(1<<6);
-
-                  }
-
-            }
-
+  p = finger.fingerFastSearch();
+  if (p != FINGERPRINT_OK)  return -1;
+  
+  // found a match!
+  Serial.print("Found ID #"); Serial.print(finger.fingerID); 
+  Serial.print(" with confidence of "); Serial.println(finger.confidence);
+  return finger.fingerID; 
 }
-
  
 
-void empty()
-
-{
-
-      int i=0;
-
-      char k=1,ch=1;
-
- 
-
-      sendchar_uart(239);
-
-      sendchar_uart(1);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(255);
-
-      sendchar_uart(1);
-
-      sendchar_uart(0);
-
-      sendchar_uart(3);
-
-      sendchar_uart(13);
-
-      sendchar_uart(0);
-
-      sendchar_uart(17);
-
- 
-
-      for(i=0;i<10;i++)
-
-            {
-
-                  k=getchar_uart();
-
-                  if(i==9)
-
-                  {
-
-                        ch=k;
-
-                        k=getchar_uart();
-
-                        k=getchar_uart();
-
-                        if(ch==0x00)
-
-                              PORTC|=(1<<7);
-
-                  }
-
-            }
-
-}
-
- 
-
-void main()
-
-{
-
-      DDRC=0xff;
-
-      PORTC=0;
-
- 
-
-      enable_uart(9600);
-
-      LCDinit();
-
-      LCDclr();
-
-      _delay_ms(5000);  //plenty of delay for modules initialization
-
-      LCDdisplay("Scanning.....");
-
-      read_finger_1();  //scans and stores in char_buffer1
-
-      read_finger_2();  //scans and stores in char_buffer2
-
-      make_template();  //makes the template with info in char_buffer1 & char_buffer2 and stores it in char_buffer1
-
-      check_finger();         //checks for the finger authentication
-
-//    store(0);               //stores the scanned value to the given parametric location in flash library
-
-//    empty();                //empties the flash library
-
-}
-
- 
-
-   
+      
